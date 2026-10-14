@@ -1,0 +1,58 @@
+---
+import Base from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import ClosureNotice from "../components/ClosureNotice.astro";
+import ImageSlot from "../components/ImageSlot.astro";
+import { site } from "../data/site";
+---
+
+<Base
+  title="Ravintola | Gasthaus Pooki"
+  description="Gasthaus Pookin à la carte ja kabinetti ovat suljettuina 31.12.2026 asti. Kesäisin Pooki tunnetaan saaristolaispöydästä ja pihastaan."
+>
+  <PageHero
+    eyebrow="Ravintola"
+    title="Saaristolaispöytä ja à la carte."
+    lede="Pooki on tunnettu laadukkaasta ruuasta. Kesäisin tarjolla on saaristolaispöytä. À la carte -ravintola on nyt tauolla."
+  />
+
+  <section class="wrap grid gap-10 py-16 md:grid-cols-[1.1fr_0.9fr] md:py-20">
+    <div class="grid gap-6">
+      <ClosureNotice />
+      <div>
+        <h2 class="font-serif text-5xl text-sea">Saaristolaispöytä</h2>
+        <p class="mt-4 text-muted">
+          Kesäkaudella Pookin pöydässä on saariston antimia. Ajantasainen lista, hinnat ja tarjoiluajat
+          kerrotaan puhelimessa, kun kausi on käynnissä. Ruokalistaa ei julkaista tälle sivulle ennen kuin se on vahvistettu.
+        </p>
+      </div>
+      <div>
+        <h2 class="font-serif text-5xl text-sea">À la carte</h2>
+        <p class="mt-4 text-muted">
+          À la carte -ravintola on suljettu {site.closedUntil} asti. Pöytävarauksia ei oteta vastaan tauon aikana.
+        </p>
+      </div>
+      <a href={site.phoneHref} class="btn btn-sea w-fit">Soita {site.phoneDisplay}</a>
+    </div>
+    <div class="grid gap-3">
+      <ImageSlot
+        label="Saaristolaispöytä"
+        src="/kuvat/gallery-saaristolaispoyta.jpg"
+        alt="Saaristolaispöytä katettuna veneen muotoiseen pöytään."
+        class="aspect-[4/3]"
+      />
+      <ImageSlot
+        label="Ravintolasali"
+        src="/kuvat/historia-pubi.jpg"
+        alt="Ravintolasali, jossa on takka, messinkivalaisin ja meriaiheinen maalaus."
+        class="aspect-[4/3]"
+      />
+      <ImageSlot
+        label="Juhlakakut"
+        src="/kuvat/gallery-kaakut.jpg"
+        alt="Kakkuja katettuna valkoiselle pöydälle."
+        class="aspect-[4/3]"
+      />
+    </div>
+  </section>
+</Base>

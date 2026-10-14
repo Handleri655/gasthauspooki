@@ -1,0 +1,103 @@
+---
+import { site } from "../data/site";
+
+interface Props {
+  formName: "yhteydenotto" | "tarjouspyynto";
+  heading: string;
+  showEventFields?: boolean;
+}
+
+const { formName, heading, showEventFields = false } = Astro.props;
+---
+
+<form
+  name={formName}
+  method="POST"
+  action="/kiitos"
+  data-netlify="true"
+  data-local-preview
+  netlify-honeypot="bot-field"
+  class="relative grid gap-5"
+>
+  <input type="hidden" name="form-name" value={formName} />
+  <p class="hp" aria-hidden="true">
+    <label>
+      Älä täytä tätä kenttää
+      <input name="bot-field" tabindex="-1" autocomplete="off" />
+    </label>
+  </p>
+
+  <h2 class="font-serif text-4xl text-sea">{heading}</h2>
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    <label class="field">
+      Nimi
+      <input name="nimi" type="text" autocomplete="name" required />
+    </label>
+    <label class="field">
+      Sähköposti
+      <input name="sahkoposti" type="email" autocomplete="email" required />
+    </label>
+    <label class="field sm:col-span-2">
+      Puhelin
+      <input name="puhelin" type="tel" autocomplete="tel" />
+    </label>
+  </div>
+
+  {
+    showEventFields && (
+      <div class="grid gap-5 sm:grid-cols-2">
+        <label class="field">
+          Tila
+          <select name="tila" required>
+            <option value="">Valitse</option>
+            <option>JuhlaPooki</option>
+            <option>Kabinetti</option>
+            <option>Liiteri</option>
+            <option>Piha</option>
+            <option>Muu</option>
+          </select>
+        </label>
+        <label class="field">
+          Henkilömäärä
+          <input name="henkilomaara" type="number" min="1" max="70" inputmode="numeric" />
+        </label>
+        <label class="field sm:col-span-2">
+          Toivottu päivä
+          <input name="paiva" type="date" />
+        </label>
+      </div>
+    )
+  }
+
+  <label class="field">
+    Viesti
+    <textarea name="viesti" required></textarea>
+  </label>
+
+  <p class="text-sm leading-relaxed text-muted">
+    Lähetämme vastauksen antamaasi osoitteeseen. Kiireellisessä asiassa soita numeroon {site.phoneDisplay}.
+    Kabinetti on suljettuna {site.closedUntil} asti.
+  </p>
+
+  <button type="submit" class="btn btn-sea w-fit">Lähetä viesti</button>
+</form>
+
+<script>
+  let abort = new AbortController();
+
+  function bindForms() {
+    abort.abort();
+    abort = new AbortController();
+    document.querySelectorAll<HTMLFormElement>("form[data-local-preview]").forEach((form) => {
+      form.addEventListener("submit", (event) => {
+        if (import.meta.env.PROD) return;
+        event.preventDefault();
+        window.location.assign(form.getAttribute("action") || "/kiitos");
+      }, { signal: abort.signal });
+    });
+  }
+
+  document.addEventListener("astro:page-load", bindForms);
+  bindForms();
+</script>

@@ -1,0 +1,42 @@
+---
+import Base from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../data/site";
+---
+
+<Base
+  title="Myynnissä | Gasthaus Pooki"
+  description="Gasthaus Pooki on myynnissä. Tarjolla myös keskeinen asemakaavatontti rivi- ja paritalorakentamiseen Uudessakaupungissa."
+>
+  <PageHero
+    eyebrow="Myynnissä"
+    title="Gasthaus Pooki on myynnissä."
+    lede="Samassa yhteydessä on tarjolla keskeisellä paikalla Uudessakaupungissa oleva asemakaavatontti rivi- ja paritalorakentamiseen."
+  />
+
+  <section class="wrap grid gap-6 py-16 md:grid-cols-2 md:py-20">
+    <article class="border border-line bg-paper p-8">
+      <h2 class="font-serif text-4xl text-sea">Majatalo</h2>
+      <p class="mt-4 text-muted">
+        Myynnissä on Gasthaus Pooki: majatalo, ravintola ja juhlatilat osoitteessa {site.street}, {site.city}.
+        Talossa on neljä kahden hengen huonetta.
+      </p>
+    </article>
+    <article class="border border-line bg-paper p-8">
+      <h2 class="font-serif text-4xl text-sea">Asemakaavatontti</h2>
+      <p class="mt-4 text-muted">
+        Myynnissä on myös ainutlaatuisella ja keskeisellä sijainnilla oleva asemakaavatontti.
+        Se tarjoaa paikan rivi- ja paritalojen rakentamiseen.
+      </p>
+    </article>
+    <div class="md:col-span-2">
+      <p class="text-muted">
+        Hintaa, välittäjää ja tarkempia asiakirjoja ei ole julkaistu tällä sivulla. Tiedustelut:
+      </p>
+      <p class="mt-4">
+        <a href={site.phoneHref} class="font-serif text-4xl text-sea no-underline">{site.phoneDisplay}</a>
+      </p>
+      <a href={`mailto:${site.email}`} class="mt-2 inline-block">{site.email}</a>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,48 @@
+---
+import Beacon from "./Beacon.astro";
+import { nav, site } from "../data/site";
+---
+
+<footer class="bg-sea-deep text-cream">
+  <div class="wrap grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr] md:py-20">
+    <div>
+      <a href="/" class="inline-flex items-center gap-3 no-underline">
+        <Beacon class="h-10 w-8" />
+        <span class="font-serif text-4xl">Gasthaus Pooki</span>
+      </a>
+      <p class="mt-5 max-w-sm text-cream/80">
+        Majatalo ja juhlatilat Uudenkaupungin torin laidalla, Walter Thomén pankkitalossa vuodesta 1986.
+      </p>
+    </div>
+
+    <nav aria-label="Alatunniste">
+      <p class="eyebrow text-brass-soft">Sivut</p>
+      <ul class="mt-4 grid gap-2">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href} class="text-cream no-underline hover:text-brass-soft">{item.label}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div>
+      <p class="eyebrow text-brass-soft">Yhteys</p>
+      <address class="mt-4 grid gap-2 not-italic">
+        <span>{site.street}</span>
+        <span>{site.postalCode} {site.city}</span>
+        <a href={site.phoneHref} class="text-cream no-underline hover:text-brass-soft">{site.phoneDisplay}</a>
+        <a href={`mailto:${site.email}`} class="text-cream no-underline hover:text-brass-soft">{site.email}</a>
+      </address>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="wrap flex flex-col gap-3 py-5 text-sm text-cream/70 sm:flex-row sm:items-center sm:justify-between">
+      <p>© {new Date().getFullYear()} Gasthaus Pooki. Sivusto ei käytä seurantaevästeitä.</p>
+      <a href="/myynnissa" class="text-cream/70 no-underline hover:text-brass-soft">Kiinteistö myynnissä</a>
+    </div>
+  </div>
+</footer>

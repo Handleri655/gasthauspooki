@@ -1,0 +1,35 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = "h-40 w-40" } = Astro.props;
+---
+
+<svg class={className} viewBox="0 0 160 160" fill="none" role="img" aria-label="40. juhlavuosi, 1986–2026">
+  <circle cx="80" cy="80" r="76" stroke="currentColor" stroke-width="1"></circle>
+  <circle cx="80" cy="80" r="68" stroke="currentColor" stroke-width="0.5" opacity="0.55"></circle>
+  <text
+    x="80"
+    y="78"
+    text-anchor="middle"
+    fill="currentColor"
+    font-family="Cormorant Garamond Variable, Palatino, serif"
+    font-size="52">40</text>
+  <text
+    x="80"
+    y="100"
+    text-anchor="middle"
+    fill="currentColor"
+    font-family="Manrope Variable, sans-serif"
+    font-size="9"
+    letter-spacing="2.8">JUHLAVUOSI</text>
+  <text
+    x="80"
+    y="118"
+    text-anchor="middle"
+    fill="currentColor"
+    font-family="Manrope Variable, sans-serif"
+    font-size="10"
+    letter-spacing="1.4">1986–2026</text>
+</svg>

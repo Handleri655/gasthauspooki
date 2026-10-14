@@ -1,0 +1,224 @@
+---
+import Base from "../layouts/BaseLayout.astro";
+import Seal from "../components/Seal.astro";
+import ClosureNotice from "../components/ClosureNotice.astro";
+import ImageSlot from "../components/ImageSlot.astro";
+import { amenities, site, venues } from "../data/site";
+
+const description =
+  "Gasthaus Pooki on majatalo ja juhlatila Uudenkaupungin torin laidalla. Neljä kahden hengen huonetta, aamiainen ja kesäpiha rakennuksessa vuodelta 1911.";
+---
+
+<Base
+  title="Gasthaus Pooki | Majatalo Uudessakaupungissa"
+  description={description}
+  overlay
+>
+  <section class="relative isolate min-h-[100svh] overflow-hidden bg-sea-deep text-cream">
+    <img
+      src="/kuvat/pookinkulma.jpg"
+      alt="Gasthaus Pookin kivitalo Ylinenkadun kulmassa."
+      class="absolute inset-0 h-full w-full object-cover object-[center_40%]"
+      fetchpriority="high"
+      decoding="async"
+    />
+    <div class="pointer-events-none absolute inset-0 bg-sea-deep/55" aria-hidden="true"></div>
+    <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-sea-deep via-sea-deep/35 to-sea-deep/50" aria-hidden="true"></div>
+
+    <div class="wrap relative flex min-h-[100svh] flex-col justify-end pb-28 pt-28 md:pb-20">
+      <div class="grid items-end gap-10 lg:grid-cols-[minmax(0,46rem)_auto]">
+        <div class="rise">
+          <p class="eyebrow text-brass-soft">40. juhlavuosi · 1986–2026</p>
+          <h1 class="mt-4 font-serif text-[clamp(3.3rem,8vw,6.6rem)] leading-[0.9]">
+            Torin laidalla<br />
+            <span class="font-normal italic text-brass-soft">vuodesta 1986.</span>
+          </h1>
+          <p class="mt-6 max-w-xl text-lg leading-relaxed text-cream/85">
+            Kodikas, meriteemainen majatalo Walter Thomén pankkitalossa. Neljä kahden hengen huonetta,
+            runsas aamiainen ja vehreä kesäpiha samassa osoitteessa.
+          </p>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href="/majoitus#varaus" class="btn btn-light">Varaa majoitus</a>
+            <a href="/juhlat#tarjous" class="btn btn-line">Kysy juhlatilaa</a>
+          </div>
+        </div>
+        <Seal class="h-32 w-32 text-brass-soft sm:h-40 sm:w-40" />
+      </div>
+
+      <dl class="mt-14 grid grid-cols-2 gap-6 border-t border-white/15 pt-6 sm:grid-cols-4">
+        <div>
+          <dt class="font-serif text-4xl">1911</dt>
+          <dd class="mt-1 text-sm text-cream/75">Talo valmistui</dd>
+        </div>
+        <div>
+          <dt class="font-serif text-4xl">1986</dt>
+          <dd class="mt-1 text-sm text-cream/75">Pooki avattiin</dd>
+        </div>
+        <div>
+          <dt class="font-serif text-4xl">4</dt>
+          <dd class="mt-1 text-sm text-cream/75">Kahden hengen huonetta</dd>
+        </div>
+        <div>
+          <dt class="font-serif text-4xl">40</dt>
+          <dd class="mt-1 text-sm text-cream/75">Juhlavuosi 2026</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="wrap py-8">
+    <ClosureNotice />
+  </div>
+
+  <section class="wrap grid items-center gap-10 py-12 md:grid-cols-2 md:py-20">
+    <div>
+      <p class="eyebrow text-brass-deep">Talo</p>
+      <h2 class="mt-3 font-serif text-[clamp(2.4rem,4vw,3.8rem)] text-sea">
+        Pankkitalo, piha ja pienoismalli Lyökin pookista.
+      </h2>
+      <p class="mt-5 text-muted">
+        Kaija ja Simo Reijonsaari avasivat Gasthaus Pookin 5.1.1986. Vuosien mittaan talo on tullut
+        tunnetuksi laadukkaasta ruuasta, ystävällisestä palvelusta ja viihtyisästä kesäpihastaan.
+      </p>
+      <p class="mt-4 text-muted">
+        Vehreä sisäpiha kokoaa väkeä suvipäivään. Pihalla seisoo pienoismalli Lyökin pookista,
+        Pookin esikuva Uudenkaupungin saaristossa.
+      </p>
+      <a href="/tarina" class="btn btn-sea mt-8">Lue tarina</a>
+    </div>
+    <div class="grid grid-cols-2 gap-3">
+      <ImageSlot
+        label="Kesäpiha"
+        src="/kuvat/gallery-piha.jpg"
+        alt="Sisäpiha ja pienoismalli Lyökin pookista."
+        position="object-left"
+        class="aspect-[3/4]"
+      />
+      <ImageSlot
+        label="Terassi"
+        src="/kuvat/gallery-piha02.jpg"
+        alt="Pihaterassi, pöydät ja kioski."
+        class="mt-8 aspect-[3/4]"
+      />
+    </div>
+  </section>
+
+  <section class="bg-paper py-16 md:py-24">
+    <div class="wrap">
+      <p class="eyebrow text-brass-deep">Pookissa</p>
+      <h2 class="mt-3 max-w-xl font-serif text-[clamp(2.4rem,4vw,3.8rem)] text-sea">
+        Majoitus, juhlat, piha ja ravintola.
+      </h2>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <a href="/majoitus" class="card-lift border border-line bg-cream no-underline">
+          <ImageSlot
+            label="Huone"
+            src="/kuvat/slider-huone.jpg"
+            alt="Kahden hengen huone meriaiheisella tapetilla."
+            class="aspect-[5/4]"
+          />
+          <div class="p-5 text-ink">
+            <h3 class="font-serif text-3xl text-sea">Majoitus</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted">Neljä tunnelmaltaan erilaista kahden hengen huonetta ja runsas aamiainen.</p>
+          </div>
+        </a>
+        <a href="/juhlat" class="card-lift border border-line bg-cream no-underline">
+          <ImageSlot
+            label="JuhlaPooki"
+            src="/kuvat/juhlapooki.jpg"
+            alt="JuhlaPookin katettu ruokasali."
+            class="aspect-[5/4]"
+          />
+          <div class="p-5 text-ink">
+            <h3 class="font-serif text-3xl text-sea">Juhlat</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted">JuhlaPooki 60 hengelle, kabinetti 10 hengelle ja kesäinen Liiteri 70 hengelle.</p>
+          </div>
+        </a>
+        <a href="/tarina#piha" class="card-lift border border-line bg-cream no-underline">
+          <ImageSlot
+            label="Lyökin pooki"
+            src="/kuvat/gallery-piha03.jpg"
+            alt="Kesäpäivä Pookin pihalla."
+            class="aspect-[5/4]"
+          />
+          <div class="p-5 text-ink">
+            <h3 class="font-serif text-3xl text-sea">Piha</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted">Laaja sisäpiha ja pienoismalli Lyökin pookista.</p>
+          </div>
+        </a>
+        <a href="/ravintola" class="card-lift border border-line bg-cream no-underline">
+          <ImageSlot
+            label="Saaristolaispöytä"
+            src="/kuvat/gallery-saaristolaispoyta.jpg"
+            alt="Saaristolaispöytä katettuna veneen muotoiseen pöytään."
+            class="aspect-[5/4]"
+          />
+          <div class="p-5 text-ink">
+            <h3 class="font-serif text-3xl text-sea">Ravintola</h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted">Kesäisin saaristolaispöytä. À la carte on suljettuna {site.closedUntil} asti.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap grid gap-12 py-16 md:grid-cols-[0.9fr_1.1fr] md:py-24">
+    <div>
+      <p class="eyebrow text-brass-deep">Majoitus</p>
+      <h2 class="mt-3 font-serif text-[clamp(2.4rem,4vw,3.6rem)] text-sea">Herää aamiaiseen.</h2>
+      <p class="mt-5 text-muted">
+        On hieno tunne herätä uuteen aamuun, kun Gasthaus Pookin runsas aamiainen on valmiina.
+        Aamiaisen voi kesäisin nauttia myös sisäpihalla.
+      </p>
+      <a href="/majoitus" class="btn btn-line mt-8 text-sea">Katso huoneet</a>
+    </div>
+    <ul class="grid gap-px bg-line sm:grid-cols-2">
+      {
+        amenities.map((item, index) => (
+          <li class:list={["bg-cream p-5", index === amenities.length - 1 && "sm:col-span-2"]}>
+            <h3 class="font-serif text-3xl text-sea">{item.title}</h3>
+            <p class="mt-2 text-sm text-muted">{item.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="bg-sea text-cream">
+    <div class="wrap py-16 md:py-24">
+      <p class="eyebrow text-brass-soft">Tilat</p>
+      <h2 class="mt-3 font-serif text-[clamp(2.4rem,4vw,3.8rem)]">Juhliin, kokouksiin ja kesäiltoihin.</h2>
+      <div class="mt-12 grid gap-10 md:grid-cols-3">
+        {
+          venues.map((venue) => (
+            <article>
+              <p class="font-serif text-7xl leading-none">{venue.capacity}</p>
+              <p class="mt-2 text-sm tracking-[0.14em] uppercase text-brass-soft">{venue.unit}</p>
+              <h3 class="mt-4 font-serif text-4xl">{venue.name}</h3>
+              <p class="mt-3 text-cream/80">{venue.text}</p>
+              <p class="mt-2 text-sm text-brass-soft">{venue.note}</p>
+            </article>
+          ))
+        }
+      </div>
+      <a href="/juhlat" class="btn btn-light mt-12">Pyydä tarjous</a>
+    </div>
+  </section>
+
+  <section class="wrap py-16 md:py-24">
+    <div class="grid gap-8 border border-line bg-paper p-8 md:grid-cols-[1.2fr_0.8fr] md:p-12">
+      <div>
+        <p class="eyebrow text-brass-deep">Tule käymään</p>
+        <h2 class="mt-3 font-serif text-[clamp(2.5rem,5vw,4.4rem)] text-sea">{site.phoneDisplay}</h2>
+        <p class="mt-4 text-muted">
+          {site.street}, {site.postalCode} {site.city}<br />
+          {site.email}
+        </p>
+      </div>
+      <div class="flex flex-col items-start justify-end gap-3">
+        <a href={site.phoneHref} class="btn btn-sea">Soita</a>
+        <a href="/yhteystiedot" class="btn btn-line text-sea">Yhteystiedot ja kartta</a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,52 @@
+---
+import { ClientRouter } from "astro:transitions";
+import { jsonLd } from "../data/site";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import MobileBar from "../components/MobileBar.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  overlay?: boolean;
+  noindex?: boolean;
+}
+
+const { title, description, overlay = false, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical.href} />
+    <link rel="alternate" hreflang="fi" href={canonical.href} />
+    <link rel="alternate" hreflang="x-default" href={canonical.href} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#1c3344" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fi_FI" />
+    <meta property="og:site_name" content="Gasthaus Pooki" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta name="twitter:card" content="summary" />
+    <script type="application/ld+json" set:html={jsonLd()}></script>
+    <ClientRouter />
+  </head>
+  <body>
+    <a class="skip" href="#sisalto">Siirry sisältöön</a>
+    <Header overlay={overlay} />
+    <main id="sisalto" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+    <MobileBar />
+  </body>
+</html>

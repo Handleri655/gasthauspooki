@@ -1,0 +1,19 @@
+---
+import Base from "../layouts/BaseLayout.astro";
+import { site } from "../data/site";
+---
+
+<Base
+  title="Kiitos viestistä | Gasthaus Pooki"
+  description="Viesti Gasthaus Pookille on lähetetty."
+  noindex
+>
+  <section class="wrap pb-24 pt-36 md:pt-44">
+    <p class="eyebrow text-brass-deep">Viesti</p>
+    <h1 class="mt-4 font-serif text-6xl text-sea">Kiitos.</h1>
+    <p class="mt-6 max-w-xl text-lg text-muted">
+      Viestisi on lähetetty. Palaamme asiaan. Jos asiasi on kiireellinen, soita numeroon {site.phoneDisplay}.
+    </p>
+    <a href="/" class="btn btn-sea mt-8">Etusivulle</a>
+  </section>
+</Base>

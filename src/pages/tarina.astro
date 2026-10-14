@@ -1,0 +1,74 @@
+---
+import Base from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import ImageSlot from "../components/ImageSlot.astro";
+import { timeline } from "../data/site";
+---
+
+<Base
+  title="Tarina | Gasthaus Pooki"
+  description="Walter Thomén pankkirakennus valmistui 1911. Kaija ja Simo Reijonsaari avasivat Gasthaus Pookin 5.1.1986. Vuosi 2026 on 40. juhlavuosi."
+>
+  <PageHero
+    eyebrow="Tarina"
+    title="Pankkitalosta majataloksi."
+    lede="Gasthaus Pooki täyttää vuonna 2026 neljäkymmentä vuotta. Talo itse on yli sata vuotta vanha."
+  />
+
+  <section class="wrap grid gap-12 py-16 md:grid-cols-[1fr_0.8fr] md:py-20">
+    <div class="max-w-2xl">
+      <p>
+        Walter Thomén suunnitteli Ylinenkatu 21:n pankkirakennuksen, joka valmistui vuonna 1911.
+        5. tammikuuta 1986 Kaija ja Simo Reijonsaari avasivat siihen kodikkaan ja meriteemaisen
+        majatalo-ravintolan, Gasthaus Pookin.
+      </p>
+      <p class="mt-4 text-muted">
+        Talo on tullut tunnetuksi laadukkaasta ruuasta, ystävällisestä palvelusta ja viihtyisästä
+        kesäpihastaan. Pieni majatalo tarkoittaa henkilökohtaista palvelua: neljä huonetta ja tutut kasvot.
+      </p>
+    </div>
+    <ImageSlot
+      label="Pankkitalo 1911"
+      src="/kuvat/pookinkulma.jpg"
+      alt="Gasthaus Pookin kivitalo kadunkulmassa."
+      class="min-h-80"
+    />
+  </section>
+
+  <section class="bg-paper">
+    <div class="wrap py-16 md:py-20">
+      <h2 class="font-serif text-5xl text-sea">Aikajana</h2>
+      <ol class="mt-10 grid gap-8 md:grid-cols-3">
+        {
+          timeline.map((item) => (
+            <li class="border-t border-brass pt-5">
+              <p class="font-serif text-5xl text-sea">{item.year}</p>
+              <h3 class="mt-3 font-serif text-3xl">{item.title}</h3>
+              <p class="mt-2 text-muted">{item.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section id="piha" class="scroll-mt-24">
+    <div class="wrap grid items-center gap-10 py-16 md:grid-cols-2 md:py-20">
+      <ImageSlot
+        label="Lyökin pooki"
+        src="/kuvat/gallery-piha.jpg"
+        alt="Sisäpiha ja pienoismalli Lyökin pookista."
+        position="object-left"
+        class="min-h-80"
+      />
+      <div>
+        <p class="eyebrow text-brass-deep">Pookin piha</p>
+        <h2 class="mt-3 font-serif text-5xl text-sea">Esikuva saaristossa.</h2>
+        <p class="mt-5 text-muted">
+          Vehreä ja laaja sisäpiha kokoaa terassikansan läheltä ja kaukaa viettämään suvipäivää.
+          Pihalla seisoo pienoismalli Lyökin pookista, joka on Pookin esikuva Uudenkaupungin saaristossa.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

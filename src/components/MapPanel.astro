@@ -1,0 +1,41 @@
+---
+import { site } from "../data/site";
+---
+
+<div data-map class="min-h-80 bg-sand">
+  <div class="flex min-h-80 flex-col items-start justify-center gap-4 p-6 md:p-10" data-map-placeholder>
+    <p class="eyebrow text-brass-deep">Kartta</p>
+    <p class="max-w-md text-ink">
+      {site.street}, {site.postalCode} {site.city}. Kartta ladataan Googlelta vasta, kun avaat sen.
+    </p>
+    <button type="button" class="btn btn-sea" data-map-load>Näytä kartta</button>
+    <a href={site.mapsUrl} class="text-sm text-sea" target="_blank" rel="noopener noreferrer">
+      Avaa Google Mapsissa
+    </a>
+  </div>
+</div>
+
+<script>
+  let abort = new AbortController();
+
+  function bindMaps() {
+    abort.abort();
+    abort = new AbortController();
+    document.querySelectorAll<HTMLButtonElement>("[data-map-load]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const root = button.closest<HTMLElement>("[data-map]");
+        if (!root) return;
+        const frame = document.createElement("iframe");
+        frame.src = "https://maps.google.com/maps?q=Ylinenkatu%2021%2C%2023500%20Uusikaupunki&z=16&output=embed";
+        frame.title = "Gasthaus Pooki kartalla, Ylinenkatu 21, Uusikaupunki";
+        frame.loading = "lazy";
+        frame.referrerPolicy = "no-referrer-when-downgrade";
+        frame.className = "h-96 w-full border-0";
+        root.replaceChildren(frame);
+      }, { signal: abort.signal, once: true });
+    });
+  }
+
+  document.addEventListener("astro:page-load", bindMaps);
+  bindMaps();
+</script>

@@ -1,0 +1,38 @@
+---
+import Base from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import InquiryForm from "../components/InquiryForm.astro";
+import MapPanel from "../components/MapPanel.astro";
+import { site } from "../data/site";
+---
+
+<Base
+  title="Yhteystiedot | Gasthaus Pooki"
+  description="Gasthaus Pooki, Ylinenkatu 21, 23500 Uusikaupunki. Puhelin +358 2 8477 100, sähköposti info@gasthauspooki.fi."
+>
+  <PageHero
+    eyebrow="Yhteys"
+    title="Soita, kirjoita tai tule torin laidalle."
+    lede="Nopeimmin saat meidät kiinni puhelimella. Viestin voi jättää myös lomakkeella."
+  />
+
+  <section class="wrap grid gap-12 py-16 md:grid-cols-2 md:py-20">
+    <div>
+      <h2 class="font-serif text-5xl text-sea">{site.phoneDisplay}</h2>
+      <address class="mt-6 grid gap-2 not-italic text-lg">
+        <span>{site.name}</span>
+        <span>{site.street}</span>
+        <span>{site.postalCode} {site.city}</span>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+      </address>
+      <p class="mt-6 max-w-md text-muted">
+        Talo on Uudenkaupungin torin laidalla. Saapumisesta ja pysäköinnistä kannattaa kysyä varauksen yhteydessä,
+        jotta ohje on ajan tasalla.
+      </p>
+      <div class="mt-8">
+        <MapPanel />
+      </div>
+    </div>
+    <InquiryForm formName="yhteydenotto" heading="Lähetä viesti" />
+  </section>
+</Base>

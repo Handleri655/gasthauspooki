@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gasthauspooki.fi/sitemap-index.xml

@@ -1,0 +1,47 @@
+---
+interface Props {
+  label: string;
+  src?: string;
+  alt?: string;
+  tone?: "sea" | "pine" | "night" | "sand";
+  class?: string;
+  position?: string;
+}
+
+const { label, src, alt, tone = "sea", class: className = "", position = "object-center" } = Astro.props;
+
+const tones = {
+  sea: "bg-sea text-brass-soft",
+  pine: "bg-pine text-cream",
+  night: "bg-sea-deep text-brass-soft",
+  sand: "bg-sand text-sea",
+};
+---
+
+<div class:list={["relative overflow-hidden", src ? "bg-sea" : tones[tone], className]}>
+  {
+    src ? (
+      <img
+        src={src}
+        alt={alt ?? label}
+        class:list={["zoom-target absolute inset-0 h-full w-full object-cover", position]}
+        loading="lazy"
+        decoding="async"
+      />
+    ) : (
+      <div class="zoom-target absolute inset-0">
+        <div class="absolute -right-8 -top-10 h-40 w-40 rounded-full bg-white/10" aria-hidden="true"></div>
+        <div class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+          <svg class="h-28 w-24 opacity-35" viewBox="0 0 64 80" fill="none">
+            <path d="M32 8 50 72H14L32 8Z" stroke="currentColor" stroke-width="1.5"></path>
+            <path d="M23 72 32 30 41 72" stroke="currentColor" stroke-width="1.25"></path>
+            <path d="M20 52h24" stroke="currentColor" stroke-width="1.25"></path>
+          </svg>
+        </div>
+        <p class="absolute bottom-0 left-0 right-0 p-4 text-[0.68rem] font-semibold tracking-[0.16em] uppercase">
+          {label}
+        </p>
+      </div>
+    )
+  }
+</div>
